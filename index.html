@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Gallery - Responsive Design</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================================================
+   1. CORE INITIALIZATION & BASE STYLES (Default / Laptop Laptop)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #334155;
+}
+
+/* Header Context */
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.brand-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.brand-logo span {
+    color: #38bdf8;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #38bdf8;
+}
+
+/* Hero Section Base */
+.hero-section {
+    background: url('https://picsum.photos/id/1016/1920/1080') no-repeat center center/cover;
+    height: 100vh;
+    margin-top: 0;
+}
+
+.hero-overlay {
+    background: rgba(15, 23, 42, 0.5);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    color: #ffffff;
+    font-size: 56px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.hero-content p {
+    color: #e2e8f0;
+    font-size: 20px;
+    max-width: 600px;
+    margin: 0 auto 35px auto;
+    line-height: 1.6;
+}
+
+.cta-btn {
+    display: inline-block;
+    background-color: #38bdf8;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.cta-btn:hover {
+    background-color: #0ea5e9;
+    transform: translateY(-2px);
+}
+
+/* Gallery Standard Base Setup */
+.gallery-section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    color: #0f172a;
+}
+
+.underline {
+    height: 4px;
+    width: 60px;
+    background-color: #38bdf8;
+    margin: 15px auto 0 auto;
+    border-radius: 2px;
+}
+
+/* 3-Column Core Display System */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.img-box {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.2));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 25px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.item-overlay h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.item-overlay span {
+    color: #38bdf8;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.img-box:hover img {
+    transform: scale(1.1);
+}
+
+.img-box:hover .item-overlay {
+    opacity: 1;
+}
+
+/* Footer Standard */
+.main-footer {
+    background-color: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 15px;
+}
+
+.design-by {
+    color: #38bdf8;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   2. TABLET LAYOUT ENGINE (768px - 1199px)
+   ========================================================================== */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .header-container {
+        padding: 20px 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 46px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+        max-width: 500px;
+    }
+
+    /* Shift layout from 3 Columns to 2 Columns structure */
+    .responsive-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .img-box {
+        height: 260px;
+    }
+}
+
+/* ==========================================================================
+   3. MOBILE SMARTPHONE LAYOUT ENGINE (Below 768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Stack navigation elements into rows */
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .nav-menu {
+        gap: 15px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+
+    /* Adjust sizing values for smaller displays */
+    .hero-section {
+        height: 85vh;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+        padding: 0 15px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+        padding: 0 20px;
+        margin-bottom: 25px;
+    }
+
+    .cta-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    /* Collapse columns completely into 1 full row items */
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .section-title h2 {
+        font-size: 28px;
+    }
+
+    .img-box {
+        height: 240px;
+    }
+    
+    .gallery-section {
+        margin: 50px auto;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="brand-logo">Winter <span>Gallery</span></a>
+            <nav class="nav-menu">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#" class="nav-link">Our Gallery</a>
+                <a href="#" class="nav-link">About Us</a>
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Capture the Cold Beauty</h1>
+                <p>Experience the premium collection of magnificent winter landscapes and frosty moments captured by experts.</p>
+                <a href="#gallery" class="cta-btn">Explore Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <main id="gallery" class="gallery-section">
+        <div class="section-title">
+            <h2>Latest Visuals Collection</h2>
+            <div class="underline"></div>
+        </div>
+
+        <div class="responsive-grid">
+            <div class="gallery-item">
+                <div class="img-box">
+                    <img src="https://picsum.photos/id/862/600/450" alt="Winter 1">
+                    <div class="item-overlay">
+                        <h3>Frozen Lake</h3>
+                        <span>Photography</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="img-box">
+                    <img src="https://picsum.photos/id/1036/600/450" alt="Winter 2">
+                    <div class="item-overlay">
+                        <h3>Snowy Mountain</h3>
+                        <span>Nature</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="img-box">
+                    <img src="https://picsum.photos/id/443/600/450" alt="Winter 3">
+                    <div class="item-overlay">
+                        <h3>Pine Forest</h3>
+                        <span>Landscape</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="img-box">
+                    <img src="https://picsum.photos/id/962/600/450" alt="Winter 4">
+                    <div class="item-overlay">
+                        <h3>Frosty Roads</h3>
+                        <span>Adventure</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="img-box">
+                    <img src="https://picsum.photos/id/1043/600/450" alt="Winter 5">
+                    <div class="item-overlay">
+                        <h3>Cabin in Snow</h3>
+                        <span>Travel</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="img-box">
+                    <img src="https://picsum.photos/id/111/600/450" alt="Winter 6">
+                    <div class="item-overlay">
+                        <h3>Ice Crystals</h3>
+                        <span>Macro View</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>Copyright © 2026 Winter Gallery Co. All rights reserved.</p>
+        <p class="design-by">Designed by Muskan Mushtaq</p>
+    </footer>
+
+</body>
+</html>
